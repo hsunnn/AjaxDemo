@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "JSONTest";
+}
+
+<h1>JSONTest</h1>
+<table id="table1" class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>姓名</th>
+            <th>年資</th>
+            <th>薪水</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+
+@section Styles {
+    <style>
+        h1 {
+            color: cadetblue
+        }
+
+        ul {
+            color: lightblue
+        }
+
+    </style>
+}
+@section Scripts {
+    <script>
+
+        // const emp = { "id": 1, "name": "Bryant", "Interest": "IVE" }
+
+        // console.log(emp.id);
+
+        //不能用"="號
+        const datas = [
+            { "id": 1, "name": "yoyo", "birthdate": "19951123", "phone": ["0222222", "0922222"] },
+            { "id": 2, "name": "po5op", "birthdate": "19950211", "phone": ["0222222", "0922222"] },
+            { "id": 3, "name": "po3op", "birthdate": "19940711", "phone": ["33332222", "0922222"] }
+        ]
+
+        const ceo = {
+            "coo": [
+                { "name": "Tatumn", "WorkYears": 3, "Salary": 123500 },
+                { "name": "YuJin", "WorkYears": 3, "Salary": 780000 },
+                { "name": "Kazuha", "WorkYears": 4, "Salary": 120 }
+            ]
+        };
+
+        const tb = document.querySelector('#table1>tbody');
+
+        const ceos = ceo.coo.map(ceo => {
+            const { name, WorkYears, Salary } = coo1;
+            return (
+                `
+                       <tr>
+                        <td>${name}</td>
+                        <td>${WorkYears}</td>
+                        <td>${Salary}</td>
+                        </tr>
+                `
+            )
+        })
+        tb.innerHTML = ceos.join("");
+
+        // console.log(ceo.coo);
+
+    </script>
+}

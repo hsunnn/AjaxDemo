@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Styles {
+    <style>
+        /*    h1 {
+                    background-color: lightgreen;
+                }*/
+    </style>
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<ul>
+    @foreach(var category in Model)
+    {
+        <li>@category.CategoryName</li>
+    }
+</ul>
+
+@section Scripts{
+<script>
+
+
+
+    // function printSomething(dataTest) {
+    //     const promise = new Promise(function (resolve, reject) {
+    //         setTimeout(function () {
+    //             resolve(dataTest)
+    //         }, 1000);
+    //     })
+
+    //     return promise;
+    // }
+
+    // (async () => {
+    //     let dataTest = await printSomething("ChosenOne");
+    //     console.log(dataTest);
+    //     dataTest = await printSomething("ChosenTwo");
+    //     console.log(dataTest);
+    //     dataTest = await printSomething("ChosenThree");
+    //     console.log(dataTest);
+    // })();
+
+</script>
+
+    }
