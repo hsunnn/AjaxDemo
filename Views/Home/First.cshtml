@@ -1,0 +1,81 @@
+﻿
+@{
+    ViewData["Title"] = "First";
+}
+
+<h1>First Ajax Demo</h1>
+<div>
+    <button id="btnStart" class="btn btn-primary">Ajax 測試</button>
+    <button id="btnStop" class="btn btn-warning">Ajax 停止</button>
+    <img src="~/images/Iphone-spinner-2.gif" id="img1" style="display:none"/>
+    <br />
+</div>
+<br />
+<div id="div1"></div>
+<div id="div2"></div>
+
+@section Styles {
+    <style>
+        #div1{
+            color:deeppink
+        }
+
+    </style>
+}
+@section Scripts {
+    <script>
+        const btn = document.querySelector('#btnStart');
+        const btnStop = document.querySelector('#btnStop');
+        const myDiv = document.querySelector('#div1');
+        const myDiv2 = document.querySelector('#div2');
+        const imgLoading = document.querySelector('#img1');
+        let abortController;
+        btnStop.addEventListener('click', () => {
+            if(abortController){
+                abortController.abort();
+            }
+        })
+
+        btn.addEventListener('click',async () => {
+            try {
+                imgLoading.style.display = "inline"
+                btn.setAttribute('disabled', 'disabled');
+
+                const abortController = new AbortController();
+                const signal = abortController.signal;
+
+                setTimeout(() => {
+                    abortController.abort();
+                }, 5000);
+
+                const response = await fetch('@Url.Content("~/api/index")', {signal});
+                const data = await response.text();
+                if (!response.ok) throw new Error(`錯誤代碼 : ${response.status}`);
+                myDiv.innerHTML = `<h2>${data}</h2>`;
+            }catch(error){
+                myDiv.innerHTML = `<h2>${error.message}</h2>`;
+            }finally{
+                imgLoading.style.display = "none"
+                btn.removeAttribute('disabled');
+            }
+        })
+
+
+
+        // console.log(fetch('@Url.Content("~/api/index")'));
+
+        // fetch('@Url.Content("~/api/index")')
+        //     .then(response => {
+        //         response.headers.forEach((value, name) => {
+        //             console.log(`${name}: ${value}`);
+        //         });
+
+        //         return response.text();
+        //     })
+        //     .then(data =>{
+        //         myDiv2.innerHTML = `<h2>${data}</h2>`;
+        //     })
+
+        // myDiv.textContent = 'button clicked';
+    </script>
+}

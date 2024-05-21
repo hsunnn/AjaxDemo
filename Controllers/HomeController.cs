@@ -16,8 +16,23 @@ namespace AjaxDemo.Controllers
         }
 
         public IActionResult Index()
-        { 
+        {
             return View(_context.Categories);
+        }
+
+        public IActionResult First()
+        {
+            return View();
+        }
+
+        public IActionResult Address()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
+        {
+            return View();
         }
 
 

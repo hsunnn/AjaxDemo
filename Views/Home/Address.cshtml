@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewData["Title"] = "Address";
+}
+
+<h1>JSON 地址取得</h1>
+
+<select id="selectCity" class="form-select" aria-label="Default select example">
+    <option selected>Open this select menu</option>
+    <option value="a">item1</option>
+    <option value="b">item2</option>
+    <option value="c">item3</option>
+    <option value="d">item4</option>
+
+</select>
+
+
+@section Styles {
+    <style>
+
+    </style>
+}
+@section Scripts {
+    <script>
+        const selCity = document.querySelector('#selectCity');
+         //ajax
+        (async () => {
+            const response = await fetch('@Url.Content("~/api/cities")');
+            const datas = await response.json();
+            const cities = datas.map((city) => {
+                return `<option value="${city}">${city}</option>`;
+            })
+            selCity.innerHTML = cities.join("");
+        })();
+    </script>
+}

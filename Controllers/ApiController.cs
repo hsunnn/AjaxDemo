@@ -17,6 +17,7 @@ namespace AjaxDemo.Controllers
 
         public IActionResult Index()
         {
+            System.Threading.Thread.Sleep(10000);
             return Content("<h1>安安安安</h1>", "text/html", System.Text.Encoding.UTF8);
         }
 
@@ -39,6 +40,13 @@ namespace AjaxDemo.Controllers
             }
 
             return NotFound();
+        }
+
+        public IActionResult Register(string name, int age = 20)
+        {
+            if (string.IsNullOrEmpty(name))
+                name = "Guest";
+            return Content($"{name} 哈囉!!! 你已經 {age} 歲囉!", "text/html", System.Text.Encoding.UTF8);
         }
 
     }
