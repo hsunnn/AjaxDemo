@@ -103,8 +103,17 @@
 
 @section Styles {
     <style>
+        .card {
+            height: 100%;
+        }
 
-
+        .card-text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 5; /* 顯示行數 */
+            -webkit-box-orient: vertical;
+        }
     </style>
 }
 
@@ -113,17 +122,18 @@
     <script>
 
         document.addEventListener("DOMContentLoaded", function () {
-            const truncateLength = 100;
             const truncateTextElements = document.querySelectorAll('.truncate-text');
 
-            truncateTextElements.forEach(function (element) {
-                let text = element.textContent;
-                if (text.length > truncateLength) {
-                    let truncated = text.substring(0, truncateLength) + '......';
-                    element.textContent = truncated;
+            truncateTextElements.forEach(element => {
+                const text = element.textContent.trim();
+                const maxLength = 100;
+
+                if (text.length > maxLength) {
+                    element.textContent = text.slice(0, maxLength) + '...';
                 }
             });
         });
+
         console.log(spots.CommonFormat.Section)
         console.log(spots.CommonFormat.Section.length)
     </script>
