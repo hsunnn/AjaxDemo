@@ -38,6 +38,25 @@
 
         container.innerHTML = cards.join('');
 
+        const hoverCards = document.querySelectorAll('.hover-card');
+
+        hoverCards.forEach(card => {
+            card.addEventListener('mouseover', () => {
+                hoverCards.forEach(otherCard => {
+                    if (otherCard !== card) {
+                        otherCard.style.opacity = '0.60';
+                    }
+                });
+                card.style.opacity = '1';
+            });
+
+            card.addEventListener('mouseout', () => {
+                hoverCards.forEach(otherCard => {
+                    otherCard.style.opacity = '1';
+                });
+            });
+        });
+
 
     </script>
 }
@@ -52,6 +71,7 @@
             .hover-card:hover {
                 transform: scale(1.08); /* 放大~~~ */
                 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                opacity:80%
             }
 
         .card-img-top {
