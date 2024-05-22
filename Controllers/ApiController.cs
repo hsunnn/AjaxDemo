@@ -21,10 +21,33 @@ namespace AjaxDemo.Controllers
             return Content("<h1>安安安安</h1>", "text/html", System.Text.Encoding.UTF8);
         }
 
+        //讀出不會重複的城市名
         public IActionResult Cities()
         {
             var cities = _context.Addresses.Select(a => a.City).Distinct();
             return Json(cities);
+        }
+
+        //根據城市名讀出不會重複的鄉鎮區
+        public IActionResult Districts(string city)
+        {
+            var districts = _context.Addresses.Where(d => d.City == city).Select(d => d.SiteId).Distinct();
+            return Json(districts);
+        }
+
+
+        //根據鄉鎮區讀初道路名
+        public IActionResult Roads(string districts)
+        {
+            var roads = _context.Addresses.Where(a => a.SiteId == districts).Select(r => r.Road);
+            return Json(roads);
+        }
+
+        //檢查帳號是否存在
+        public IActionResult CheckAccount(string name)
+        {
+            var member = _context.Members.Any(m => m.Name == name);
+            return Content(member.ToString(), "text/plain", System.Text.Encoding.UTF8);
         }
 
         public IActionResult Avatar(int id = 1)
@@ -42,11 +65,15 @@ namespace AjaxDemo.Controllers
             return NotFound();
         }
 
-        public IActionResult Register(string name, int age = 20)
+        //public IActionResult Register(string userName, string email, int age = 20)
+        public IActionResult Register(CMemberRegister member)
         {
-            if (string.IsNullOrEmpty(name))
-                name = "Guest";
-            return Content($"{name} 哈囉!!! 你已經 {age} 歲囉!", "text/html", System.Text.Encoding.UTF8);
+            if (string.IsNullOrEmpty(member.userName))
+            {
+                member.userName = "Guest";
+
+            }
+            return Content($"{member.userName} 哈囉!!! 你的電子郵件是 {member.Email}，已經 {member.Age} 歲囉!", "text/html", System.Text.Encoding.UTF8);
         }
 
     }

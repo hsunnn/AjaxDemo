@@ -3,29 +3,72 @@
     ViewData["Title"] = "Register";
 }
 
-<h1>Register</h1>
 
-<div id="div1">
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <h1>註冊</h1>
+        <form method="post" action="~/api/register" id="userForm">
+            <div class="mb-3">
+                <label for="InputName" class="form-label">姓名</label>
+                <input type="text" class="form-control" id="InputName" name="userName">
 
+            </div>
+            <div class="mb-3">
+                <label for="InputEmail" class="form-label">電子郵件</label>
+                <input type="email" class="form-control" id="InputEmail" name="email">
+            </div>
+            <div class="mb-3">
+                <label for="InputAge" class="form-label">年紀</label>
+                <input type="number" class="form-control" id="InputAge" name="age">
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="buttonSubmit">送出</button>
+        </form>
+        <div id="div1" class="alert alert-info mt-3"></div>
+    </div>
+    <div class="col-3"></div>
 </div>
+
 
 @section Styles{
     <style>
-        #div1 {
-            color:darkkhaki
-        }
+     
     </style>
 }
 
 @section Scripts{
     <script>
         const divResult = document.querySelector('#div1');
-        (async () => {
-            const url = '@Url.Content("~/api/register")?id=1&age=28&name=Jennie';
-            const response = await fetch(url);
+        const btnSubmit = document.querySelector('#buttonSubmit');
+        const inpName = document.querySelector('#InputName');
+        const inpEmail = document.querySelector('#InputEmail');
+        const inpAge = document.querySelector('#InputAge');
+
+        btnSubmit.addEventListener('click',async (event) => {
+            event.preventDefault();
+
+            //將資料放進 FormData
+            const myForm = document.querySelector('#userForm');
+            const formData = new FormData(myForm);
+
+            const url = '@Url.Content("~/api/register/")';
+            const response = await fetch(url, {
+                method: 'POST',
+                body: formData
+            });
+
             const data = await response.text();
-            divResult.innerHTML = data;
-        })();
+            divResult.textContent = data;
+        })
+
+        // const divResult = document.querySelector('#div1');
+        // (async () => {
+        //     const url = '@Url.Content("~/api/register")?id=1&age=28&name=Jennie';
+        //     const response = await fetch(url);
+        //     const data = await response.text();
+        //     divResult.innerHTML = data;
+        // })();
         
     </script>
 }
