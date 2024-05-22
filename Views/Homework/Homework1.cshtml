@@ -13,6 +13,25 @@
 </div>
 <br />
 
+@section Styles {
+    <style>
+        .hover-card {
+            transition: all 0.3s ease;
+        }
+
+            .hover-card:hover {
+                transform: scale(1.08); /* 放大~~~ */
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                opacity: 80%
+            }
+
+        .card-img-top {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+}
+
 @section Scripts {
     <script src="~/js/travel.js"></script>
 
@@ -59,24 +78,4 @@
 
 
     </script>
-}
-
-
-@section Styles{
-    <style>
-        .hover-card {
-            transition: all 0.3s ease;
-        }
-
-            .hover-card:hover {
-                transform: scale(1.08); /* 放大~~~ */
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                opacity:80%
-            }
-
-        .card-img-top {
-            width: 100%;
-            height: auto;
-        }
-    </style>
 }
