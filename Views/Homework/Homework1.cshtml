@@ -65,20 +65,20 @@
                 hoverCards.forEach(otherCard => {
                     if (otherCard !== card) {
                         otherCard.style.opacity = '0.60';
-                        otherCard.querySelector('.card-title','card-text').style.color = 'silver';
+                        otherCard.querySelector('.card-title').style.color = 'silver';
                         otherCard.querySelector('.card-text').style.color = 'silver';
                     }
                 });
                 card.style.opacity = '1';
-                card.querySelector('.card-title', 'card-text').style.color = '';
+                card.querySelector('.card-title').style.color = '';
                 card.querySelector('.card-text').style.color = '';
             });
 
             card.addEventListener('mouseout', () => {
                 hoverCards.forEach(otherCard => {
                     otherCard.style.opacity = '1';
-                    otherCard.querySelector('.card-title', '.card-text').style.color = '';
-                    card.querySelector('.card-text').style.color = '';
+                    otherCard.querySelector('.card-title').style.color = '';
+                    otherCard.querySelector('.card-text').style.color = '';
                 });
             });
         });
