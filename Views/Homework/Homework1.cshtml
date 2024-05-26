@@ -41,18 +41,19 @@
         const cards = sections.map(section => {
             const { stitle, xbody, address, file } = section;
             return (`
-                    <div class="col">
-                       <div class="card hover-card p-2 m-2 h-100" style="width: 25rem;">
-                            <img src="${file.img.text || file.img[0].text}" class="card-img-top" alt="${file.img["@@description"] || file.img['@@description']}" width=300 height=200>
-                            <div class="card-body">
-                                        <h4 class="card-title"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-star-fill" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M2 15.5V2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.74.439L8 13.069l-5.26 2.87A.5.5 0 0 1 2 15.5M8.16 4.1a.178.178 0 0 0-.32 0l-.634 1.285a.18.18 0 0 1-.134.098l-1.42.206a.178.178 0 0 0-.098.303L6.58 6.993c.042.041.061.1.051.158L6.39 8.565a.178.178 0 0 0 .258.187l1.27-.668a.18.18 0 0 1 .165 0l1.27.668a.178.178 0 0 0 .257-.187L9.368 7.15a.18.18 0 0 1 .05-.158l1.028-1.001a.178.178 0 0 0-.098-.303l-1.42-.206a.18.18 0 0 1-.134-.098z" />
+                            <div class="col">
+                               <div class="card hover-card p-3 m-3 h-100" style="width: 23rem;">
+                                    <img src="${file.img.text || file.img[0].text}" class="card-img-top" alt="${file.img["@@description"] || file.img['@@description']}" width=300 height=200>
+                                    <div class="card-body">
+                                                        <h4 class="card-title"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmarks" viewBox="0 0 16 16">
+                  <path d="M2 4a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v11.5a.5.5 0 0 1-.777.416L7 13.101l-4.223 2.815A.5.5 0 0 1 2 15.5zm2-1a1 1 0 0 0-1 1v10.566l3.723-2.482a.5.5 0 0 1 .554 0L11 14.566V4a1 1 0 0 0-1-1z"/>
+                  <path d="M4.268 1H12a1 1 0 0 1 1 1v11.768l.223.148A.5.5 0 0 0 14 13.5V2a2 2 0 0 0-2-2H6a2 2 0 0 0-1.732 1"/>
                 </svg><strong> ${stitle}</strong></h4>
-                                <p class="card-text">${xbody.length > 150 ? xbody.substring(0, 150).concat('...') : xbody}</p>
+                                        <p class="card-text">${xbody.length > 150 ? xbody.substring(0, 150).concat('...') : xbody}</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-            `);
+                    `);
         });
 
         container.innerHTML = cards.join('');
