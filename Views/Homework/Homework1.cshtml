@@ -65,14 +65,17 @@
                 hoverCards.forEach(otherCard => {
                     if (otherCard !== card) {
                         otherCard.style.opacity = '0.60';
+                        otherCard.querySelector('.card-title').style.color = 'silver';
                     }
                 });
                 card.style.opacity = '1';
+                card.querySelector('.card-title').style.color = '';
             });
 
             card.addEventListener('mouseout', () => {
                 hoverCards.forEach(otherCard => {
                     otherCard.style.opacity = '1';
+                    otherCard.querySelector('.card-title').style.color = '';
                 });
             });
         });
